@@ -25,6 +25,7 @@ public class Player {
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
+        int pot = gameStateObject.get("pot").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
         int minimumRaise = gameStateObject.get("minimum_raise").getAsInt();
         int myPot = ourPlayer.get("stack").getAsInt();
@@ -41,9 +42,6 @@ public class Player {
 
 
         //------------------------------------------------------------------------
-
-
-
 
         return bet;
     }
