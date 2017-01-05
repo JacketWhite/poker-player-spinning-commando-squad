@@ -38,7 +38,11 @@ public class Player {
 
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if (buyIn < 300 - bigBlind) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+//        else if (buyIn < 300 - bigBlind)
+//        {
+//            bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+//
+//        }
 
 
 
