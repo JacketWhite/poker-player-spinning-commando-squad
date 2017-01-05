@@ -36,6 +36,7 @@ public class Player {
         if (myCards.get(0) > 9 && myCards.get(1) > 9) {
             bet=1000;
         }
+        else if (myCards.get(0) > 10 || myCards.get(1) > 10) bet=200;
         return bet;
     }
 
