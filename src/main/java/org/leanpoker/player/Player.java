@@ -19,7 +19,7 @@ public class Player {
 
         JsonArray players = gameStateObject.getAsJsonArray("players");
         JsonObject ourPlayer = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
-
+        int stack = ourPlayer.get("stack").getAsInt();
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
 
         // The cards on the table,might be empty.
@@ -41,6 +41,7 @@ public class Player {
         if (myCards.get(0) > 9 && myCards.get(1) > 9) {
             bet=1000;
         }
+        else if (myCards.get(0) > 10 || myCards.get(1) > 10) bet=200;
         return bet;
     }
 
