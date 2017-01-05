@@ -37,21 +37,24 @@ public class Player {
         return bet;
     }
 
-    public static int highCards(int bet, ArrayList<Integer> myCards, int stack) {
+    public static boolean twoHighCards(int bet, ArrayList<Integer> myCards, int stack) {
         if (myCards.get(0) > 9 && myCards.get(1) > 9) {
-            bet = stack;
-        } else if (myCards.get(0) > 10 || myCards.get(1) > 10) {
-            if (stack < 200) bet = stack;
-            else bet = 200;
+            return true;
         }
-        return bet;
+        return false;
+        }
+    public static boolean oneHighCards(int bet, ArrayList<Integer> myCards, int stack) {
+        if (myCards.get(0) > 10 || myCards.get(1) > 10) {
+            return true;
+        }
+        return false;
     }
 
-    public static int stackIsBig(int bet, int stack) {
+    public static boolean stackIsBig(int bet, int stack) {
         if (stack>1500){
-            bet = 0;
+            return true;
         }
-        return bet;
+        return false;
     }
 
     public static int highCards(int bet, ArrayList<Integer> myCards) {
