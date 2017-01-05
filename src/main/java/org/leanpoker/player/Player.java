@@ -36,7 +36,8 @@ public class Player {
         // Put your card observing logic here ------------------------------------
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if (getIntoFlop(myCards, pot, buyIn, communityCards)) call(myBet, buyIn);
+
+//        else if (getIntoFlop(myCards, pot, buyIn, communityCards)) call(myBet, buyIn);
 //        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
 //        else if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
 //        else if (oneHighCards(myCards, stack) && ) ;
@@ -99,7 +100,7 @@ public class Player {
 
 
     public static boolean highPairs(ArrayList<Integer> myCards) {
-        if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1))) return true;
+        if (myCards.get(0) > 11 && myCards.get(1) > 11 && myCards.get(0).equals(myCards.get(1))) return true;
         return false;
     }
 
