@@ -72,8 +72,8 @@ public class Player {
 
 
     public static boolean highPairs(ArrayList<Integer> myCards) {
-        if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1)));
-        return true;
+        if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1))) return true;
+        return false;
     }
 
 
