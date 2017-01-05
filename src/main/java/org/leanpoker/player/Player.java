@@ -15,12 +15,17 @@ public class Player {
         int bet = 0;
         ArrayList<String> letters = new ArrayList<>(Arrays.asList("J", "Q", "K", "A"));
 
+
+
         JsonObject gameStateObject = gameState.getAsJsonObject();
 
         JsonArray players = gameStateObject.getAsJsonArray("players");
         JsonObject ourPlayer = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
         int stack = ourPlayer.get("stack").getAsInt();
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
+
+        int buyIn = gameStateObject.get("current_buy_in").getAsInt();
+        int myBet = ourPlayer.get("bet").getAsInt();
 
         // The cards on the table,might be empty.
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
@@ -31,8 +36,7 @@ public class Player {
         //------------------------------------------------------------------------
 
 
-        int buyIn = gameStateObject.get("current_buy_in").getAsInt();
-        int myBet = ourPlayer.get("bet").getAsInt();
+
 
         return bet;
     }
@@ -72,7 +76,11 @@ public class Player {
     }
     return cardValues;
     }
-
+    public static int raise(int myBet, int buyIn, int minimumRaise, int bet){
+        int number;
+        number = (minimumRaise < bet)? buyIn - myBet + bet : buyIn - myBet + minimumRaise;
+        return number;
+    }
     public static void showdown(JsonElement game) {
     }
 }
