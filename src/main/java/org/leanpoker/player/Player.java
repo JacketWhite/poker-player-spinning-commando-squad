@@ -59,7 +59,7 @@ public class Player {
 
     public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int playersBefore, int buyIn) {
         if (oneHighCards(myCards)) {
-            if (pot * playersBefore * 2 > buyIn) return true;
+            if (pot * 7 > buyIn) return true;
         }
         return false;
     }
