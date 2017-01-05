@@ -24,6 +24,7 @@ public class Player {
         int stack = ourPlayer.get("stack").getAsInt();
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
 
+        int bigBlind = gameStateObject.get("small_blind").getAsInt() * 2;
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int pot = gameStateObject.get("pot").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
@@ -36,6 +37,7 @@ public class Player {
         // Put your card observing logic here ------------------------------------
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
+        else if (buyIn < 800 - bigBlind) call(myBet, buyIn);
 
 //        else if (getIntoFlop(myCards, pot, buyIn, communityCards)) call(myBet, buyIn);
 //        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
