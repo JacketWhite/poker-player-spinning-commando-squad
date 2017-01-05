@@ -42,6 +42,9 @@ public class Player {
             if (player.getAsJsonObject().get("name").getAsString().equals("Glorious Ape") && player.getAsJsonObject().get("bet").getAsInt() <= buyIn) {
                bajvan = false;
             }
+            else if ((player.getAsJsonObject().get("name").getAsString().equals("Glorious Ape") && player.getAsJsonObject().get("bet").getAsInt() <= buyIn)){
+                bajvan = false;
+            }
             else {bajvan = true;}
 
         }
