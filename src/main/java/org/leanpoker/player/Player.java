@@ -25,7 +25,7 @@ public class Player {
             if (letters.contains(value)) cardValues.add(11+letters.indexOf(value));
             else cardValues.add(Integer.valueOf(value));
         }
-            System.out.println(cardValues);
+            System.out.println("COMMENT " + cardValues);
         }
         catch (Exception e){return 333;}
 
