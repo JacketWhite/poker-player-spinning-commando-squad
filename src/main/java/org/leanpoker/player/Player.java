@@ -26,11 +26,15 @@ public class Player {
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
+        int minimumRaise = gameStateObject.get("minimum_raise").getAsInt();
 
         // The cards on the table,might be empty.
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
 
         // Put your card observing logic here ------------------------------------
+        //if (highCards(bet, myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
+        //if stackisBig(bet, stack) bet = raise(myBet, buyIn, minimumRaise, 200);
+
         bet = highCards(bet, myCards, stack);
         bet = stackIsBig(bet, stack);
         //------------------------------------------------------------------------
