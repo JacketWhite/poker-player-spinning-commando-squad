@@ -32,13 +32,11 @@ public class Player {
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
 
         // Put your card observing logic here ------------------------------------
+
         if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
         if (oneHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, 200);
-//        if (stackIsBig(stack)) bet = 0;
 
-//        bet = highCards(bet, myCards, stack);
-//        bet = stackIsBig(bet, stack);
         //------------------------------------------------------------------------
 
 
@@ -60,12 +58,6 @@ public class Player {
         return false;
     }
 
-    public static boolean stackIsBig(int stack) {
-        if (stack>1500){
-            return true;
-        }
-        return false;
-    }
 
     public static boolean highPairs(ArrayList<Integer> myCards) {
         if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1)));
