@@ -27,6 +27,7 @@ public class Player {
 
         // Put your card observing logic here ------------------------------------
         bet = highCards(bet, myCards, stack);
+        bet = stackIsBig(bet, stack);
         //------------------------------------------------------------------------
 
 
@@ -42,6 +43,13 @@ public class Player {
         } else if (myCards.get(0) > 10 || myCards.get(1) > 10) {
             if (stack < 200) bet = stack;
             else bet = 200;
+        }
+        return bet;
+    }
+
+    public static int stackIsBig(int bet, int stack) {
+        if (stack>1500){
+            bet = 0;
         }
         return bet;
     }
