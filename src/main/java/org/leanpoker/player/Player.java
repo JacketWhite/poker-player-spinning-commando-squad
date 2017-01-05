@@ -10,21 +10,25 @@ import java.util.List;
 
 public class Player {
 
-    static final String VERSION = "Default Java folding player";
+    static final String VERSION = "call everything";
 
     public static int betRequest(JsonElement gameState) {
         ArrayList<String> letters = new ArrayList<>(Arrays.asList("J", "D", "K", "A"));
         List<Integer> cardValues = new ArrayList<Integer>();
         JsonObject gameStateObject = gameState.getAsJsonObject();
         JsonArray players = gameStateObject.getAsJsonArray("players");
-        JsonObject player = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
+        JsonObject ourPlayer = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
 
-        for (JsonElement card : player.getAsJsonObject().getAsJsonArray("hole_cards")){
+        for (JsonElement card : ourPlayer.getAsJsonArray("hole_cards")){
             String value = String.valueOf(card.getAsJsonObject().get("rank"));
             if (letters.contains(value)) cardValues.add(11+letters.indexOf(value));
             else cardValues.add(Integer.valueOf(value));
         }
-        return 1;
+
+        int buyIn = gameStateObject.get("current_buy_in").getAsInt();
+        int myBet = ourPlayer.get("bet").getAsInt();
+
+        return buyIn-myBet;
     }
 
     public static void showdown(JsonElement game) {
