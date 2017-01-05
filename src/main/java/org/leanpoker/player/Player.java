@@ -30,19 +30,18 @@ public class Player {
         int myBet = ourPlayer.get("bet").getAsInt();
         int minimumRaise = gameStateObject.get("minimum_raise").getAsInt();
         int myPot = ourPlayer.get("stack").getAsInt();
+        int previousRound = 0;
+        int round = gameStateObject.get("round").getAsInt();
 
         // The cards on the table,might be empty.
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
 
         // Put your card observing logic here ------------------------------------
-
-
+        JsonObject blue;
+        for (JsonElement player :players) player.getAsJsonObject().get("name").getAsString().equals("Glorious Ape")? blue = player.getAsJsonObject();
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-//        else if (buyIn < 300 - bigBlind)
-//        {
-//            bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
-//
-//        }
+        else if (buyIn < 600 - bigBlind && blue.get("bet").getAsInt() < buyIn) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+
 
 
 
