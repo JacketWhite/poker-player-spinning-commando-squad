@@ -68,10 +68,20 @@ public class Player {
         return false;
     }
 
+    public static boolean tierOneCards(ArrayList<Integer> myCards, int stack) {
+        if (myCards.get(0) > 12 && myCards.get(1) > 12) {
+            if (myCards.get(0) == myCards.get(1)) {
+                return true;
+            }
+            return true;
+        }
+        return false;
+    }
+
 
     public static boolean highPairs(ArrayList<Integer> myCards) {
-        if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1)));
-        return true;
+        if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1))) return true;
+        return false;
     }
 
 
