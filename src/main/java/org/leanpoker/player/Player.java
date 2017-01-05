@@ -24,7 +24,9 @@ public class Player {
             String value = card.getAsJsonObject().get("rank").getAsString();
             if (letters.contains(value)) cardValues.add(11+letters.indexOf(value));
             else cardValues.add(Integer.valueOf(value));
-        }}
+        }
+            System.out.println(cardValues);
+        }
         catch (Exception e){return 333;}
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
