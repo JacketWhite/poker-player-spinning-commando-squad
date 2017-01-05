@@ -46,11 +46,6 @@ public class Player {
         return bet;
     }
 
-    public static int highCards(int bet, ArrayList<Integer> myCards) {
-        if (myCards.get(0) > 9 && myCards.get(1) > 9) bet=50;
-        return bet;
-    }
-
     public static int highPairs(int bet, ArrayList<Integer> myCards) {
         if (myCards.get(0) > 9 && myCards.get(1) > 9 && myCards.get(0).equals(myCards.get(1))) bet=200;
         return bet;
