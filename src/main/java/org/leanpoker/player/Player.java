@@ -57,7 +57,7 @@ public class Player {
         return false;
     }
 
-    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int playersBefore, int buyIn) {
+    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int buyIn) {
         if (oneHighCards(myCards)) {
             if (pot * 7 > buyIn) return true;
         }
