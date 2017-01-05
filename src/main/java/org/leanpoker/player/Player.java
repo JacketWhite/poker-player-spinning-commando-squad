@@ -28,7 +28,7 @@ public class Player {
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
 
-        return 100;
+        return 1000;
     }
 
     public static void showdown(JsonElement game) {
