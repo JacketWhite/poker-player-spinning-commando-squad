@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Player {
 
@@ -14,44 +13,15 @@ public class Player {
 
     public static int betRequest(JsonElement gameState) {
         ArrayList<String> letters = new ArrayList<>(Arrays.asList("J", "Q", "K", "A"));
-        List<Integer> cardValues = new ArrayList<Integer>();
+
         JsonObject gameStateObject = gameState.getAsJsonObject();
+
         JsonArray players = gameStateObject.getAsJsonArray("players");
         JsonObject ourPlayer = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
 
-        try {
-        for (JsonElement card : ourPlayer.get("hole_cards").getAsJsonArray()){
-                String value = card.getAsJsonObject().get("rank").getAsString();
-            switch(value) {
-                case "J" :
-                    cardValues.add(11);
-                    break; // optional
+        ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
 
-                case "Q" :
-                    cardValues.add(12);
-                    break; // optional
-
-                case "K" :
-                    cardValues.add(13);
-                    break;
-                case "A" :
-                    cardValues.add(14);
-                    break;
-
-                default : // Optional
-                   cardValues.add(Integer.valueOf(value));
-            }
-//                if (letters.contains(value)) {
-//                    cardValues.add(11+letters.indexOf(value));
-//                    System.out.println("COMMENT - letter value: " + letters.indexOf(value));
-//                }
-//                else cardValues.add(Integer.valueOf(value));
-        }
-        System.out.println("COMMENT " + cardValues);
-        }
-        catch (Exception e){return 1000;}
-
-        if (cardValues.get(0) > 9 && cardValues.get(1) > 9) {
+        if (myCards.get(0) > 9 && myCards.get(1) > 9) {
             return 1000;
         }
 
@@ -59,6 +29,34 @@ public class Player {
         int myBet = ourPlayer.get("bet").getAsInt();
 
         return 0;
+    }
+
+    public static ArrayList<Integer> getRank(JsonArray cardsArray) {
+        ArrayList<Integer> cardValues = new ArrayList<>();
+        for (JsonElement card : cardsArray){
+        String value = card.getAsJsonObject().get("rank").getAsString();
+        switch(value) {
+        case "J" :
+        cardValues.add(11);
+        break; // optional
+
+        case "Q" :
+        cardValues.add(12);
+        break; // optional
+
+        case "K" :
+        cardValues.add(13);
+        break;
+        case "A" :
+        cardValues.add(14);
+        break;
+
+        default : // Optional
+        cardValues.add(Integer.valueOf(value));
+        }
+
+    }
+    return cardValues;
     }
 
     public static void showdown(JsonElement game) {
