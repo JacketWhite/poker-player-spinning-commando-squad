@@ -37,11 +37,17 @@ public class Player {
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
 
         // Put your card observing logic here ------------------------------------
-        JsonObject blue;
+        boolean bajvan = true;
+        for (JsonElement player : players) {
+            if (player.getAsJsonObject().get("name").getAsString().equals("Glorious Ape") && player.getAsJsonObject().get("bet").getAsInt() <= buyIn) {
+               bajvan = false;
+            }
+            else {bajvan = true;}
 
+        }
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if (buyIn < 600 - bigBlind) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+        else if ((buyIn < 600 - bigBlind) && bajvan) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
 
 
 
