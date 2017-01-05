@@ -19,7 +19,7 @@ public class Player {
 
         JsonArray players = gameStateObject.getAsJsonArray("players");
         JsonObject ourPlayer = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
-
+        int stack = ourPlayer.get("stack").getAsInt();
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
         // Put your card observing logic here ------------------------------------
         bet = highCards(bet, myCards);
