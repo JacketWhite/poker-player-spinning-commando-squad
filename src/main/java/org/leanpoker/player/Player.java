@@ -12,6 +12,7 @@ public class Player {
     static final String VERSION = "call everything";
 
     public static int betRequest(JsonElement gameState) {
+        int bet = 0;
         ArrayList<String> letters = new ArrayList<>(Arrays.asList("J", "Q", "K", "A"));
 
         JsonObject gameStateObject = gameState.getAsJsonObject();
@@ -21,14 +22,20 @@ public class Player {
 
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
 
-        if (myCards.get(0) > 9 && myCards.get(1) > 9) {
-            return 1000;
-        }
+        bet = highCards(bet, myCards);
+
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
 
-        return 0;
+        return bet;
+    }
+
+    public static int highCards(int bet, ArrayList<Integer> myCards) {
+        if (myCards.get(0) > 9 && myCards.get(1) > 9) {
+            bet=1000;
+        }
+        return bet;
     }
 
     public static ArrayList<Integer> getRank(JsonArray cardsArray) {
