@@ -36,7 +36,7 @@ public class Player {
         // Put your card observing logic here ------------------------------------
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if (getIntoFlop(myCards, pot, buyIn)) call(myBet, buyIn);
+        else if (getIntoFlop(myCards, pot, buyIn, communityCards)) call(myBet, buyIn);
 //        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
 //        else if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
 //        else if (oneHighCards(myCards, stack) && ) ;
@@ -56,9 +56,9 @@ public class Player {
         return false;
     }
 
-    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int buyIn) {
-        if (oneHighCards(myCards)) {
-            if (pot * 7 > buyIn) return true;
+    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int buyIn, ArrayList<Integer> table) {
+        if (oneHighCards(myCards) && table.size()==0) {
+            if (pot * 7 > buyIn ) return true;
         }
         return false;
     }
