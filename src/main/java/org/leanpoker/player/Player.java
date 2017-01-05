@@ -26,7 +26,7 @@ public class Player {
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
 
         // Put your card observing logic here ------------------------------------
-        bet = highCards(bet, myCards, stack);
+        bet = highCards(bet, myCards);
         //------------------------------------------------------------------------
 
 
@@ -36,13 +36,13 @@ public class Player {
         return bet;
     }
 
-    public static int highCards(int bet, ArrayList<Integer> myCards, int stack) {
+    public static int highCards(int bet, ArrayList<Integer> myCards) {
         if (myCards.get(0) > 9 && myCards.get(1) > 9) {
-            bet=stack;
+            bet=1000;
         }
         else if (myCards.get(0) > 10 || myCards.get(1) > 10) {
-            if (stack<200) bet=stack;
-            else bet=200;
+//            if (stack<200) bet=stack;
+            bet=200;
         }
         return bet;
     }
