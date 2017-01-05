@@ -38,9 +38,10 @@ public class Player {
 
         // Put your card observing logic here ------------------------------------
         JsonObject blue;
-        for (JsonElement player :players) player.getAsJsonObject().get("name").getAsString().equals("Glorious Ape")? blue = player.getAsJsonObject();
+
+
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if ((buyIn < 600 - bigBlind) && blue.get("bet").getAsInt() <= buyIn) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+        else if (buyIn < 600 - bigBlind) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
 
 
 
