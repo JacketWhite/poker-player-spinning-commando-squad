@@ -36,8 +36,11 @@ public class Player {
 
         // Put your card observing logic here ------------------------------------
 
+
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if (buyIn < 800 - bigBlind) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+        else if (buyIn < 300 - bigBlind) bet = raise(myBet, buyIn, minimumRaise, minimumRaise);
+
+
 
 //        else if (getIntoFlop(myCards, pot, buyIn, communityCards)) call(myBet, buyIn);
 //        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
