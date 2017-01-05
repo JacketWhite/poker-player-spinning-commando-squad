@@ -38,7 +38,6 @@ public class Player {
                     cardValues.add(14);
                     break;
 
-                // You can have any number of case statements.
                 default : // Optional
                    cardValues.add(Integer.valueOf(value));
             }
@@ -50,12 +49,16 @@ public class Player {
         }
         System.out.println("COMMENT " + cardValues);
         }
-        catch (Exception e){return 333;}
+        catch (Exception e){return 1000;}
+
+        if (cardValues.get(0) > 9 && cardValues.get(1) > 9) {
+            return 1000;
+        }
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
 
-        return buyIn;
+        return 0;
     }
 
     public static void showdown(JsonElement game) {
