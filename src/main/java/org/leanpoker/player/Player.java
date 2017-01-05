@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Player {
 
-    static final String VERSION = "call everything";
+    static final String VERSION = "We have to go deeper!!";
 
     public static int betRequest(JsonElement gameState) {
         int bet = 0;
