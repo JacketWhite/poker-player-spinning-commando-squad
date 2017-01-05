@@ -57,13 +57,20 @@ public class Player {
         return false;
     }
 
+    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int playersBefore, int buyIn) {
+        if (oneHighCards(myCards)) {
+            if (pot * playersBefore * 2 > buyIn) return true;
+        }
+        return false;
+    }
+
     public static boolean twoHighCards(ArrayList<Integer> myCards, int stack) {
         if (myCards.get(0) > 9 && myCards.get(1) > 9) {
             return true;
         }
         return false;
         }
-    public static boolean oneHighCards(ArrayList<Integer> myCards, int stack) {
+    public static boolean oneHighCards(ArrayList<Integer> myCards) {
         if (myCards.get(0) > 10 || myCards.get(1) > 10) {
             return true;
         }
