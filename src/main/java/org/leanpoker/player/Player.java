@@ -22,7 +22,9 @@ public class Player {
         try {
         for (JsonElement card : ourPlayer.get("hole_cards").getAsJsonArray()){
             String value = card.getAsJsonObject().get("rank").getAsString();
-            if (letters.contains(value)) cardValues.add(11+letters.indexOf(value));
+            if (letters.contains(value)) {
+                cardValues.add(11+letters.indexOf(value));
+            System.out.println("COMMENT - letter value: " + letters.indexOf(value)); }
             else cardValues.add(Integer.valueOf(value));
         }
             System.out.println("COMMENT " + cardValues);
