@@ -35,9 +35,9 @@ public class Player {
         // Put your card observing logic here ------------------------------------
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
-        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
-        else if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
-        else if (oneHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
+//        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
+//        else if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
+//        else if (oneHighCards(myCards, stack) && ) ;
 
 
         //------------------------------------------------------------------------
