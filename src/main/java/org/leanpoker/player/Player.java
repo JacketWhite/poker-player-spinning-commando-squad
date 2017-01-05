@@ -25,6 +25,7 @@ public class Player {
         ArrayList<Integer> myCards = getRank(ourPlayer.get("hole_cards").getAsJsonArray());
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
+        int pot = gameStateObject.get("pot").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
         int minimumRaise = gameStateObject.get("minimum_raise").getAsInt();
         int myPot = ourPlayer.get("stack").getAsInt();
@@ -35,15 +36,13 @@ public class Player {
         // Put your card observing logic here ------------------------------------
 
         if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
+        else if (getIntoFlop(myCards, pot, buyIn, communityCards)) call(myBet, buyIn);
 //        else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
 //        else if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
 //        else if (oneHighCards(myCards, stack) && ) ;
 
 
         //------------------------------------------------------------------------
-
-
-
 
         return bet;
     }
@@ -57,9 +56,9 @@ public class Player {
         return false;
     }
 
-    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int playersBefore, int buyIn) {
-        if (oneHighCards(myCards)) {
-            if (pot * playersBefore * 2 > buyIn) return true;
+    public static boolean getIntoFlop(ArrayList<Integer> myCards, int pot, int buyIn, ArrayList<Integer> table) {
+        if (oneHighCards(myCards) && table.size()==0) {
+            if (pot * 7 > buyIn ) return true;
         }
         return false;
     }
