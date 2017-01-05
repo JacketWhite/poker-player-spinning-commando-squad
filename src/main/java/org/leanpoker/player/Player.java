@@ -27,13 +27,14 @@ public class Player {
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
         int minimumRaise = gameStateObject.get("minimum_raise").getAsInt();
+        int myPot = ourPlayer.get("stack").getAsInt();
 
         // The cards on the table,might be empty.
         ArrayList<Integer> communityCards = getRank(gameStateObject.getAsJsonArray("community_cards"));
 
         // Put your card observing logic here ------------------------------------
 
-        if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, 200);
+        if (highPairs(myCards)) bet = raise(myBet, buyIn, minimumRaise, myPot);
         else if (havePairOnTable(myCards, communityCards)) bet = raise(myBet, buyIn, minimumRaise, 100);
         else if (twoHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
         else if (oneHighCards(myCards, stack)) bet = raise(myBet, buyIn, minimumRaise, 200);
@@ -107,6 +108,9 @@ public class Player {
         int number;
         number = (minimumRaise < bet)? buyIn - myBet + bet : buyIn - myBet + minimumRaise;
         return number;
+    }
+    public static int call(int myBet, int buyIn){
+        return buyIn - myBet;
     }
     public static void showdown(JsonElement game) {
     }
