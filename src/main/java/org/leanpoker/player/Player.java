@@ -47,6 +47,15 @@ public class Player {
         return bet;
     }
 
+    public static boolean havePairOnTable(ArrayList<Integer> myCards, ArrayList<Integer> communityCards) {
+        for (Integer card: myCards) {
+            if (card > 10) {
+                if (communityCards.contains(card)) return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean twoHighCards(ArrayList<Integer> myCards, int stack) {
         if (myCards.get(0) > 9 && myCards.get(1) > 9) {
             return true;
