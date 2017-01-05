@@ -20,12 +20,12 @@ public class Player {
         JsonObject ourPlayer = players.get(gameStateObject.get("in_action").getAsInt()).getAsJsonObject();
 
         try {
-        for (JsonElement card : ourPlayer.getAsJsonArray("hole_cards")){
-            String value = String.valueOf(card.getAsJsonObject().get("rank"));
+        for (JsonElement card : ourPlayer.get("hole_cards").getAsJsonArray()){
+            String value = card.getAsJsonObject().get("rank").getAsString();
             if (letters.contains(value)) cardValues.add(11+letters.indexOf(value));
             else cardValues.add(Integer.valueOf(value));
         }}
-        catch (Exception e){}
+        catch (Exception e){return 333;}
 
         int buyIn = gameStateObject.get("current_buy_in").getAsInt();
         int myBet = ourPlayer.get("bet").getAsInt();
